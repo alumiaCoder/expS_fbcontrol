@@ -1,5 +1,5 @@
 > ### Developed with and for PhD candidate [Fil Botelho@Orhpeus Institute](https://orpheusinstituut.be/en/orpheus-research-centre/researchers/filipa-botelho)
-> This is part of the `experimental_system` repositories that are present on this github account.
+> This is part of the experimental_system (**expS**) repositories that are present on this github account.
 
 # 🎵 fbcontrol~
 Two Max-MSP objects for acoustic feedback (Larsen effect) manipulation.
