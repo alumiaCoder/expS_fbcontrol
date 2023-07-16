@@ -1,3 +1,6 @@
+> ### Developed with and for PhD candidate [Fil Botelho@Orhpeus Institute](https://orpheusinstituut.be/en/orpheus-research-centre/researchers/filipa-botelho)
+> This is part of the `experimental_system` repositories that are present on this github account.
+
 # 🎵 fbcontrol~
 Two Max-MSP objects for acoustic feedback (Larsen effect) manipulation.
 - [An early example in practice](https://vimeo.com/394801431)
@@ -5,11 +8,14 @@ Two Max-MSP objects for acoustic feedback (Larsen effect) manipulation.
 # 🖱️ Use
 
 - **The feedback system should have (minimum specs):**
-  1. A free to move, unidirectional, microphone (input signal)
-  2. A fixed speaker (output signal)
-  3. Some kind of signal attenuation (compression, limiting, etc) right before signal output
-  4. Enough gain
-  5. A similar signal path to one found on the examples: INPUT -> FFT -> Manipulation object -> Resynthesis -> OUTPUT
+  > 1. A free to move, unidirectional, microphone (input signal)
+  > 2. Some kind of time-domain to frequency-domain transform algorithm (e.g., Fast Fourier Transform (FFT))
+  > 3. Frequency-domain signal manipulation (`fbcontrolresist~`/`fbcontrolreact~`)
+  > 4. ...
+  > 5. Some kind of signal attenuation (compression, limiting) right before signal output
+  > 6. A fixed speaker (output signal)
+  > 7. Enough gain
+
 - Inside `obj_source` you will find the `C` source code for the Max-MSP objects. You will need [Max-msp SDK](https://github.com/Cycling74/max-sdk) if you want to compile from source.
 - Inside `examples` you can find two Max patches that showcase both objects (`fbcontrolresist~` and `fbcontrolreact~`)
 - These objects depend on [sigmund~](https://github.com/v7b1/sigmund_64bit-version) by Miller Puckette.
@@ -33,7 +39,6 @@ Detailed info on each component/parameter can be found in the examples.
 I am more than happy to help
 
 # 🕵️ Detailed description
-- **This is part of the `experimental_system` repositories that are present on this github account.**
 
 When generating acoustic feedback in a room, if we move the microphone around, we realize that different regions of the room generate 
 different feedback tones. 
@@ -51,13 +56,13 @@ We would actually change the acoustic characteristics of the produced feedback. 
 than before, because acoustic feedback is self inducing, and relies on itself to modulate its own behavior.
 - If the tone grows slower, it will also feed less energy to the system (in the same time period), changing its own characteristics.
 
-**So, how do we manipulate acoustic signal?** 
+**So, how do we manipulate this characteristic?** 
 
 ## Time domain
 
 We first need to be aware of how each tone is behaving. For this, we need real time frequency information. 
 
-We can achieve that with some kind of time domain to frequency domain transformation. It has to be fast enough so that we can still work live with the sound.
+We can achieve that with some kind of time-domain to frequency-domain transformation. It has to be fast enough so that we can still work live with the sound.
 
 Constant-Q transform would be ideal, but for simplicity we used an already functioning FFT implementation by Miller Puckette ([sigmund~](https://github.com/v7b1/sigmund_64bit-version)).
 
